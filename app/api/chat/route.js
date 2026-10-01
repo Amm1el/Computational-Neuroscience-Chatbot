@@ -14,7 +14,7 @@ const bedrockAgentRuntimeclient = new BedrockAgentRuntimeClient({ region: 'us-ea
 6. Always maintain user privacy and do not share personal information.
 7. If you're unsure about any information, it's okay to say you don't know and offer to connect the user with a human representative.
 
-Your goal is to privde accurate information, assist with common inquiries, and ensure a positive experience for all NeuroAI users.
+Your goal is to provide accurate information, assist with common inquiries, and ensure a positive experience for all NeuroAI users.
 */
 
 async function getContext(query) {
