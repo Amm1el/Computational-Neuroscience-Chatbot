@@ -1,40 +1,45 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Computational Neuroscience Chatbot
 
-## Getting Started
+A retrieval-augmented generation (RAG) support chatbot for **NeuroAI**, a concept platform that helps students prepare for computational neuroscience interviews. Answers come from a curated knowledge base rather than the model's training data alone, so responses stay grounded in source material.
 
-First, run the development server:
+**Demo video:** https://youtu.be/XsZQaDHMvXk
+
+## How it works
+
+1. The chat UI (React, Next.js App Router) sends the conversation to the `/api/chat` route.
+2. The API route (Node.js) passes the latest user message to **Amazon Bedrock Knowledge Bases** through the `RetrieveAndGenerate` API.
+3. Bedrock retrieves the most relevant passages from the knowledge base and generates an answer grounded in them.
+4. The answer is returned to the UI.
+
+## Tech stack
+
+| Layer | Tools |
+|---|---|
+| Frontend | Next.js 14, React, Material UI |
+| Backend | Next.js API routes (Node.js) |
+| Retrieval and generation | Amazon Bedrock Knowledge Bases, AWS SDK for JavaScript v3 |
+
+## Run locally
 
 ```bash
+git clone https://github.com/Amm1el/Computational-Neuroscience-Chatbot.git
+cd Computational-Neuroscience-Chatbot
+npm install
+cp .env.example .env.local   # then fill in the values
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| Variable | Description |
+|---|---|
+| `KNOWLEDGE_BASE_ID` | ID of your Amazon Bedrock knowledge base |
+| `MODEL_ARN` | ARN of the Bedrock foundation model used to generate answers |
 
-## Learn More
+AWS credentials are read from the standard AWS credential chain (for example, `aws configure`). The client uses the `us-east-1` region.
 
-To learn more about Next.js, take a look at the following resources:
+## Author
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
-# Comp-Neuroscience-Chatbot
-# Comp-Neuroscience-Chatbot
-# Comp-Neuroscience-Chatbot
-# Comp-Neuroscience-Chatbot
+Ammiel Bowen · [ammielbowen.com](https://ammielbowen.com) · [LinkedIn](https://www.linkedin.com/in/ammielbowen/)
