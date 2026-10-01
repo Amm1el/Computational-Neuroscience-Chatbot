@@ -8,7 +8,7 @@ A retrieval-augmented generation (RAG) support chatbot for **NeuroAI**, a concep
 
 1. The chat UI (React, Next.js App Router) sends the conversation to the `/api/chat` route.
 2. The API route (Node.js) passes the latest user message to **Amazon Bedrock Knowledge Bases** through the `RetrieveAndGenerate` API.
-3. Bedrock retrieves the most relevant passages from the knowledge base and generates an answer grounded in them.
+3. Bedrock retrieves the most relevant passages from the knowledge base, which is stored as vector embeddings in a **Pinecone** index, and generates an answer grounded in them.
 4. The answer is returned to the UI.
 
 ## Tech stack
@@ -18,6 +18,7 @@ A retrieval-augmented generation (RAG) support chatbot for **NeuroAI**, a concep
 | Frontend | Next.js 14, React, Material UI |
 | Backend | Next.js API routes (Node.js) |
 | Retrieval and generation | Amazon Bedrock Knowledge Bases, AWS SDK for JavaScript v3 |
+| Vector database | Pinecone |
 
 ## Run locally
 
@@ -35,7 +36,7 @@ Open http://localhost:3000.
 
 | Variable | Description |
 |---|---|
-| `KNOWLEDGE_BASE_ID` | ID of your Amazon Bedrock knowledge base |
+| `KNOWLEDGE_BASE_ID` | ID of your Amazon Bedrock knowledge base (configured with a Pinecone vector store) |
 | `MODEL_ARN` | ARN of the Bedrock foundation model used to generate answers |
 
 AWS credentials are read from the standard AWS credential chain (for example, `aws configure`). The client uses the `us-east-1` region.
